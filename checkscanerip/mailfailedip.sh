@@ -18,12 +18,12 @@ awk '{print $7}' /tmp/failedip.log |awk -F[ '{print $2}' |awk -F] '{print $1}' |
 awk '{cmd="iptables -A INPUT -s "$1"/255.255.255.255 -j DROP";system(cmd)}' $failedipcon
 echo "Finishi 49" >>  $failedip
 date >>  $failedip
-awk '/failure$/ $logfile > $failedip
+awk '/failure$/{print }' $logfile > $failedip
 awk '{print $7}' /tmp/failedip.log |awk -F[ '{print $2}' |awk -F] '{print $1}' |awk '{++a[$0]}END{for(i in a){if(a[i]>99){print i"\t"a[i]}}}' > $failedipcon
 awk '{cmd="iptables -A INPUT -s "$1"/255.255.255.255 -j DROP";system(cmd)}' $failedipcon
 echo "Finishi 99" >>  $failedip
 date >>  $failedip
-awk '/failure$/ $logfile1 > $failedip
+awk '/failure$/{print }' $logfile1 > $failedip
 awk '{print $7}' /tmp/failedip.log |awk -F[ '{print $2}' |awk -F] '{print $1}' |awk '{++a[$0]}END{for(i in a){if(a[i]>999){print i"\t"a[i]}}}' > $failedipcon
 awk '{cmd="iptables -A INPUT -s "$1"/255.255.255.255 -j DROP";system(cmd)}' $failedipcon
 echo "Finishi 999" >>  $failedip
