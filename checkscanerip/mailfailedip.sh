@@ -14,14 +14,14 @@ awk '{cmd="iptables -A INPUT -s "$1"/255.255.255.255 -j DROP";system(cmd)}' $fai
 echo "Finish 10" >>  $failedip
 date >>  $failedip
 awk '/failure$/ && $3 > "'"$datehour"":""$datemins59"":""00"'" {print }' $logfile > $failedip
-awk '{print $7}' /tmp/failedip.log |awk -F[ '{print $2}' |awk -F] '{print $1}' |awk '{++a[$0]}END{for(i in a){if(a[i]>59){print i"\t"a[i]}}}' > $failedipcon
+awk '{print $7}' /tmp/failedip.log |awk -F[ '{print $2}' |awk -F] '{print $1}' |awk '{++a[$0]}END{for(i in a){if(a[i]>49){print i"\t"a[i]}}}' > $failedipcon
 awk '{cmd="iptables -A INPUT -s "$1"/255.255.255.255 -j DROP";system(cmd)}' $failedipcon
-echo "Finishi 59" >>  $failedip
+echo "Finishi 49" >>  $failedip
 date >>  $failedip
 awk '/failure$/ $logfile > $failedip
-awk '{print $7}' /tmp/failedip.log |awk -F[ '{print $2}' |awk -F] '{print $1}' |awk '{++a[$0]}END{for(i in a){if(a[i]>199){print i"\t"a[i]}}}' > $failedipcon
+awk '{print $7}' /tmp/failedip.log |awk -F[ '{print $2}' |awk -F] '{print $1}' |awk '{++a[$0]}END{for(i in a){if(a[i]>99){print i"\t"a[i]}}}' > $failedipcon
 awk '{cmd="iptables -A INPUT -s "$1"/255.255.255.255 -j DROP";system(cmd)}' $failedipcon
-echo "Finishi 199" >>  $failedip
+echo "Finishi 99" >>  $failedip
 date >>  $failedip
 awk '/failure$/ $logfile1 > $failedip
 awk '{print $7}' /tmp/failedip.log |awk -F[ '{print $2}' |awk -F] '{print $1}' |awk '{++a[$0]}END{for(i in a){if(a[i]>999){print i"\t"a[i]}}}' > $failedipcon
